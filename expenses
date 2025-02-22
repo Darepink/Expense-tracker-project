@@ -1,0 +1,76 @@
+# A dictionary to store expenses
+expenses = {}
+
+# Function to add a new expense
+def add_expense():
+    expense_id = input("Enter expense ID: ")
+    category = input("Enter category (e.g., Food, Transport): ")
+    amount = float(input("Enter amount: $"))
+    date = input("Enter date (YYYY-MM-DD): ")
+    expenses[expense_id] = {"category": category, "amount": amount, "date": date}
+    print("Expense added successfully.")
+
+# Function to view all expenses
+def view_expenses():
+    if not expenses:
+        print("No expenses recorded.")
+        return
+    print(f"{'ID':<5} {'Category':<15} {'Amount':<10} {'Date':<10}")
+    for expense_id, details in expenses.items():
+        print(f"{expense_id:<5} {details['category']:<15} {details['amount']:<10} {details['date']:<10}")
+
+# Function to filter expenses by category
+def filter_expenses():
+    category = input("Enter category to filter by: ")
+    filtered = {eid: details for eid, details in expenses.items() if details['category'] == category}
+    if not filtered:
+        print(f"No expenses found in category '{category}'.")
+    else:
+        print(f"Expenses in '{category}' category:")
+        for expense_id, details in filtered.items():
+            print(f"{expense_id} - {details['amount']} on {details['date']}")
+
+# Function to calculate total expenses
+def calculate_total():
+    total = sum(details['amount'] for details in expenses.values())
+    print(f"Total expenses: ${total:.2f}")
+
+# Function to delete an expense
+def delete_expense():
+    expense_id = input("Enter expense ID to delete: ")
+    if expense_id in expenses:
+        del expenses[expense_id]
+        print(f"Expense with ID {expense_id} deleted.")
+    else:
+        print(f"No expense found with ID {expense_id}.")
+
+# Main program loop
+def main():
+    while True:
+        print("\n--- Expense Tracker ---")
+        print("1. Add new expense")
+        print("2. View all expenses")
+        print("3. Filter expenses by category")
+        print("4. Calculate total expenses")
+        print("5. Delete an expense")
+        print("6. Exit")
+        choice = input("Choose an option: ")
+
+        if choice == '1':
+            add_expense()
+        elif choice == '2':
+            view_expenses()
+        elif choice == '3':
+            filter_expenses()
+        elif choice == '4':
+            calculate_total()
+        elif choice == '5':
+            delete_expense()
+        elif choice == '6':
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid option, please try again.")
+
+if __name__ == "__main__":
+    main()
