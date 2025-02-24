@@ -2,28 +2,26 @@ expenses = {}
 
 def add_expense():
     expense_id = input("ID: ")
-    category = input("Category: ")
     amount = float(input("Amount: $"))
-    date = input("Date (YYYY-MM-DD): ")
-    expenses[expense_id] = {"category": category, "amount": amount, "date": date}
+    expenses[expense_id] = amount
     print("Added.")
 
 def view_expenses():
     if not expenses:
         print("No expenses.")
-        return
-    for expense_id, details in expenses.items():
-        print(f"{expense_id}: {details['category']} - ${details['amount']} on {details['date']}")
+    else:
+        for expense_id, amount in expenses.items():
+            print(f"{expense_id}: ${amount}")
 
 def calculate_total():
-    total = sum(details['amount'] for details in expenses.values())
+    total = sum(expenses.values())
     print(f"Total: ${total:.2f}")
 
 def delete_expense():
     expense_id = input("Enter ID to delete: ")
     if expense_id in expenses:
-        del expenses[expense_id]
-        print("Deleted.")
+        expenses[expense_id] = None
+        print("Marked as deleted.")
     else:
         print("ID not found.")
 
