@@ -2,7 +2,7 @@ Expenses Tracker Project
 Team members: Darren and Danny  
 Team Roles:  
 
-Darren - Coder and manager of the Repository and Github
+Darren - Coder and manager of the Repository and Github - added the add expenses and view expenses
 
 Danny - Person adding the total calculations and filtering or deleting expenses.
 
